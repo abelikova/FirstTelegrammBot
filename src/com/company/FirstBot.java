@@ -9,7 +9,7 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class FirstBot extends TelegramLongPollingBot {
 
-    private static final String Token = "586964744:AAGoZlm9zmwchcdLUTKWtvE3QzGi-Y3rlCY";
+    private static final String Token = "";
     private static final String UserName = "hbvBot";
 
     public FirstBot() {
