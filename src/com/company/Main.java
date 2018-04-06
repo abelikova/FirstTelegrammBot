@@ -10,6 +10,7 @@ import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 import java.io.IOException;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,6 +18,30 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Hello, world");
+
+        //-------тестирование коннекта с БД
+        /*DBConnector dbConnector = new DBConnector();
+        Connection connection = dbConnector.getPostgresConnection();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"Message\"");
+            while (rs.next()) {
+                String str = "primarykey: " + rs.getString("primarykey") + " chatid: " + rs.getString("chatid");
+                System.out.println("Message:" + str);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }*/
+        //----------------------------------
+
         ApiContextInitializer.init(); // Инициализируем апи
         TelegramBotsApi botApi = new TelegramBotsApi();
 
@@ -43,6 +68,9 @@ public class Main {
 
             try {
                 botApi.registerBot(bot);
+                //bot.setClassifierRepository(AppEnv.getContext().getClassifierRepository());
+                //bot.setMarshaller(AppEnv.getContext().getMarschaller());
+                //bot.setQuestStateHolder(AppEnv.getContext().getQuestStateHolder());
                 //AppEnv.getContext().getMenuManager().setBot(bot);
             } catch (TelegramApiRequestException ex) {
                 ex.printStackTrace();
